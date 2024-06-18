@@ -1,0 +1,163 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@layer base {
+  body {
+  }
+}
+@layer components {
+  .soundline-node {
+    min-height: 50px;
+    min-width: 300px;
+    max-width: 420px;
+    border: 1px solid #eee;
+    padding: 10px;
+    border-radius: 10px;
+    background: white;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    transition: 0.1s linear;
+
+    &:active {
+      outline: 1px solid #1677ff;
+    }
+    &:hover {
+      @apply shadow-sm;
+      border-color: #1677ff;
+      .soundline-handle {
+        opacity: 1;
+        scale: 1.2;
+      }
+    }
+  }
+  .soundline-node-name {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+  }
+  .soundline-node-label {
+    font-size: 13px;
+    font-weight: 500;
+  }
+  .soundline-node-content {
+    display: flex;
+    align-items: start;
+    flex-direction: column;
+    background-color: #f7f7f7;
+    padding: 10px;
+    border-radius: 10px;
+    gap: 0.5rem;
+  }
+  .soundline-node-item {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+  }
+  .soundline-tool {
+    @apply flex gap-1 bg-white rounded-lg p-1 border;
+  }
+  .label {
+    color: rgba(28, 31, 35, 0.35);
+    font-size: 12px;
+    font-weight: 500;
+  }
+  .label-modal {
+    font-size: 13px;
+    font-weight: 500;
+  }
+  .soundline-handle {
+    background-color: #1677ff;
+    width: 10px;
+    height: 10px;
+    transition: 0.1s linear;
+  }
+  .soundline-description {
+    color: gray;
+    font-size: 14px;
+  }
+  .menu-item {
+    @apply flex items-center p-2 gap-3 bg-white border rounded-lg cursor-grab font-medium transition-all;
+    font-size: 13px;
+    &:hover {
+      @apply bg-[#E6F4FF] border-[#E6F4FF];
+    }
+  }
+  .soundline-handle-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    justify-content: end;
+    margin: 0.25rem 0;
+  }
+  .soundline-handle-item {
+    background-color: #f7f7f7;
+    font-size: 12px;
+    padding: 0.25rem 1rem;
+    font-weight: 500;
+    border-radius: 5px;
+    position: relative;
+    .soundline-handle {
+      bottom: -5px !important;
+      opacity: 0;
+    }
+  }
+  .edge-label {
+    background-color: #f7f7f7;
+    font-size: 12px;
+    padding: 0.25rem 1rem;
+    font-weight: 500;
+    border-radius: 5px;
+    border: 1px solid #eee;
+    cursor: pointer;
+  }
+  .edge-label-default {
+    background-color: #f7f7f7;
+    font-size: 12px;
+    padding: 1rem;
+    font-weight: 500;
+    border-radius: 100rem;
+    border: 1px solid #eee;
+    cursor: pointer;
+  }
+}
+.ant-form-item {
+  margin-bottom: 0 !important;
+}
+path.react-flow__edge-path {
+  stroke-width: 2;
+}
+.ant-collapse-header {
+  font-weight: 500;
+}
+.ant-collapse-content {
+  background-color: white !important;
+}
+.ant-collapse-content-box {
+  padding-top: 16px !important;
+}
+.sidebar-custom::-webkit-scrollbar {
+  display: none;
+}
+.ant-collapse {
+  border-radius: 0;
+  border-left: none;
+  border-right: none;
+}
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+.hidden-outline {
+  border: 0 !important;
+  outline: 0 !important;
+  box-shadow: none !important;
+}
