@@ -13,6 +13,7 @@ import type { AxiosInstance, AxiosRequestConfig, AxiosResponse, CancelToken } fr
 
 export interface IConditionalClient {
     getAll(): Promise<ConditionalList>;
+    getDetails(id: number): Promise<Conditional>;
 }
 
 export class ConditionalClient implements IConditionalClient {
@@ -74,6 +75,411 @@ export class ConditionalClient implements IConditionalClient {
             return throwException("An unexpected server error occurred.", status, _responseText, _headers);
         }
         return Promise.resolve<ConditionalList>(null as any);
+    }
+
+    getDetails(id: number , cancelToken?: CancelToken | undefined): Promise<Conditional> {
+        let url_ = this.baseUrl + "/api/Conditional/{id}";
+        if (id === undefined || id === null)
+            throw new Error("The parameter 'id' must be defined.");
+        url_ = url_.replace("{id}", encodeURIComponent("" + id));
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_: AxiosRequestConfig = {
+            method: "GET",
+            url: url_,
+            headers: {
+                "Accept": "application/json"
+            },
+            cancelToken
+        };
+
+        return this.instance.request(options_).catch((_error: any) => {
+            if (isAxiosError(_error) && _error.response) {
+                return _error.response;
+            } else {
+                throw _error;
+            }
+        }).then((_response: AxiosResponse) => {
+            return this.processGetDetails(_response);
+        });
+    }
+
+    protected processGetDetails(response: AxiosResponse): Promise<Conditional> {
+        const status = response.status;
+        let _headers: any = {};
+        if (response.headers && typeof response.headers === "object") {
+            for (let k in response.headers) {
+                if (response.headers.hasOwnProperty(k)) {
+                    _headers[k] = response.headers[k];
+                }
+            }
+        }
+        if (status === 200) {
+            const _responseText = response.data;
+            let result200: any = null;
+            let resultData200  = _responseText;
+            result200 = Conditional.fromJS(resultData200);
+            return Promise.resolve<Conditional>(result200);
+
+        } else if (status !== 200 && status !== 204) {
+            const _responseText = response.data;
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+        }
+        return Promise.resolve<Conditional>(null as any);
+    }
+}
+
+export interface ICustomerNumberClient {
+    getAll(): Promise<CustomerNumberList>;
+    getDetails(id: number): Promise<CustomerNumber>;
+}
+
+export class CustomerNumberClient implements ICustomerNumberClient {
+    private instance: AxiosInstance;
+    private baseUrl: string;
+    protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
+
+    constructor(baseUrl?: string, instance?: AxiosInstance) {
+
+        this.instance = instance ? instance : axios.create();
+
+        this.baseUrl = baseUrl !== undefined && baseUrl !== null ? baseUrl : "";
+
+    }
+
+    getAll(  cancelToken?: CancelToken | undefined): Promise<CustomerNumberList> {
+        let url_ = this.baseUrl + "/api/CustomerNumber";
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_: AxiosRequestConfig = {
+            method: "GET",
+            url: url_,
+            headers: {
+                "Accept": "application/json"
+            },
+            cancelToken
+        };
+
+        return this.instance.request(options_).catch((_error: any) => {
+            if (isAxiosError(_error) && _error.response) {
+                return _error.response;
+            } else {
+                throw _error;
+            }
+        }).then((_response: AxiosResponse) => {
+            return this.processGetAll(_response);
+        });
+    }
+
+    protected processGetAll(response: AxiosResponse): Promise<CustomerNumberList> {
+        const status = response.status;
+        let _headers: any = {};
+        if (response.headers && typeof response.headers === "object") {
+            for (let k in response.headers) {
+                if (response.headers.hasOwnProperty(k)) {
+                    _headers[k] = response.headers[k];
+                }
+            }
+        }
+        if (status === 200) {
+            const _responseText = response.data;
+            let result200: any = null;
+            let resultData200  = _responseText;
+            result200 = CustomerNumberList.fromJS(resultData200);
+            return Promise.resolve<CustomerNumberList>(result200);
+
+        } else if (status !== 200 && status !== 204) {
+            const _responseText = response.data;
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+        }
+        return Promise.resolve<CustomerNumberList>(null as any);
+    }
+
+    getDetails(id: number , cancelToken?: CancelToken | undefined): Promise<CustomerNumber> {
+        let url_ = this.baseUrl + "/api/CustomerNumber/{id}";
+        if (id === undefined || id === null)
+            throw new Error("The parameter 'id' must be defined.");
+        url_ = url_.replace("{id}", encodeURIComponent("" + id));
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_: AxiosRequestConfig = {
+            method: "GET",
+            url: url_,
+            headers: {
+                "Accept": "application/json"
+            },
+            cancelToken
+        };
+
+        return this.instance.request(options_).catch((_error: any) => {
+            if (isAxiosError(_error) && _error.response) {
+                return _error.response;
+            } else {
+                throw _error;
+            }
+        }).then((_response: AxiosResponse) => {
+            return this.processGetDetails(_response);
+        });
+    }
+
+    protected processGetDetails(response: AxiosResponse): Promise<CustomerNumber> {
+        const status = response.status;
+        let _headers: any = {};
+        if (response.headers && typeof response.headers === "object") {
+            for (let k in response.headers) {
+                if (response.headers.hasOwnProperty(k)) {
+                    _headers[k] = response.headers[k];
+                }
+            }
+        }
+        if (status === 200) {
+            const _responseText = response.data;
+            let result200: any = null;
+            let resultData200  = _responseText;
+            result200 = CustomerNumber.fromJS(resultData200);
+            return Promise.resolve<CustomerNumber>(result200);
+
+        } else if (status !== 200 && status !== 204) {
+            const _responseText = response.data;
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+        }
+        return Promise.resolve<CustomerNumber>(null as any);
+    }
+}
+
+export interface IDepartmentClient {
+    getAll(): Promise<DepartmentList>;
+    getDetails(id: number): Promise<Department>;
+}
+
+export class DepartmentClient implements IDepartmentClient {
+    private instance: AxiosInstance;
+    private baseUrl: string;
+    protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
+
+    constructor(baseUrl?: string, instance?: AxiosInstance) {
+
+        this.instance = instance ? instance : axios.create();
+
+        this.baseUrl = baseUrl !== undefined && baseUrl !== null ? baseUrl : "";
+
+    }
+
+    getAll(  cancelToken?: CancelToken | undefined): Promise<DepartmentList> {
+        let url_ = this.baseUrl + "/api/Department";
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_: AxiosRequestConfig = {
+            method: "GET",
+            url: url_,
+            headers: {
+                "Accept": "application/json"
+            },
+            cancelToken
+        };
+
+        return this.instance.request(options_).catch((_error: any) => {
+            if (isAxiosError(_error) && _error.response) {
+                return _error.response;
+            } else {
+                throw _error;
+            }
+        }).then((_response: AxiosResponse) => {
+            return this.processGetAll(_response);
+        });
+    }
+
+    protected processGetAll(response: AxiosResponse): Promise<DepartmentList> {
+        const status = response.status;
+        let _headers: any = {};
+        if (response.headers && typeof response.headers === "object") {
+            for (let k in response.headers) {
+                if (response.headers.hasOwnProperty(k)) {
+                    _headers[k] = response.headers[k];
+                }
+            }
+        }
+        if (status === 200) {
+            const _responseText = response.data;
+            let result200: any = null;
+            let resultData200  = _responseText;
+            result200 = DepartmentList.fromJS(resultData200);
+            return Promise.resolve<DepartmentList>(result200);
+
+        } else if (status !== 200 && status !== 204) {
+            const _responseText = response.data;
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+        }
+        return Promise.resolve<DepartmentList>(null as any);
+    }
+
+    getDetails(id: number , cancelToken?: CancelToken | undefined): Promise<Department> {
+        let url_ = this.baseUrl + "/api/Department/{id}";
+        if (id === undefined || id === null)
+            throw new Error("The parameter 'id' must be defined.");
+        url_ = url_.replace("{id}", encodeURIComponent("" + id));
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_: AxiosRequestConfig = {
+            method: "GET",
+            url: url_,
+            headers: {
+                "Accept": "application/json"
+            },
+            cancelToken
+        };
+
+        return this.instance.request(options_).catch((_error: any) => {
+            if (isAxiosError(_error) && _error.response) {
+                return _error.response;
+            } else {
+                throw _error;
+            }
+        }).then((_response: AxiosResponse) => {
+            return this.processGetDetails(_response);
+        });
+    }
+
+    protected processGetDetails(response: AxiosResponse): Promise<Department> {
+        const status = response.status;
+        let _headers: any = {};
+        if (response.headers && typeof response.headers === "object") {
+            for (let k in response.headers) {
+                if (response.headers.hasOwnProperty(k)) {
+                    _headers[k] = response.headers[k];
+                }
+            }
+        }
+        if (status === 200) {
+            const _responseText = response.data;
+            let result200: any = null;
+            let resultData200  = _responseText;
+            result200 = Department.fromJS(resultData200);
+            return Promise.resolve<Department>(result200);
+
+        } else if (status !== 200 && status !== 204) {
+            const _responseText = response.data;
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+        }
+        return Promise.resolve<Department>(null as any);
+    }
+}
+
+export interface IMenuClient {
+    getAll(): Promise<MenuList>;
+    getDetails(id: number): Promise<Menu>;
+}
+
+export class MenuClient implements IMenuClient {
+    private instance: AxiosInstance;
+    private baseUrl: string;
+    protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
+
+    constructor(baseUrl?: string, instance?: AxiosInstance) {
+
+        this.instance = instance ? instance : axios.create();
+
+        this.baseUrl = baseUrl !== undefined && baseUrl !== null ? baseUrl : "";
+
+    }
+
+    getAll(  cancelToken?: CancelToken | undefined): Promise<MenuList> {
+        let url_ = this.baseUrl + "/api/Menu";
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_: AxiosRequestConfig = {
+            method: "GET",
+            url: url_,
+            headers: {
+                "Accept": "application/json"
+            },
+            cancelToken
+        };
+
+        return this.instance.request(options_).catch((_error: any) => {
+            if (isAxiosError(_error) && _error.response) {
+                return _error.response;
+            } else {
+                throw _error;
+            }
+        }).then((_response: AxiosResponse) => {
+            return this.processGetAll(_response);
+        });
+    }
+
+    protected processGetAll(response: AxiosResponse): Promise<MenuList> {
+        const status = response.status;
+        let _headers: any = {};
+        if (response.headers && typeof response.headers === "object") {
+            for (let k in response.headers) {
+                if (response.headers.hasOwnProperty(k)) {
+                    _headers[k] = response.headers[k];
+                }
+            }
+        }
+        if (status === 200) {
+            const _responseText = response.data;
+            let result200: any = null;
+            let resultData200  = _responseText;
+            result200 = MenuList.fromJS(resultData200);
+            return Promise.resolve<MenuList>(result200);
+
+        } else if (status !== 200 && status !== 204) {
+            const _responseText = response.data;
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+        }
+        return Promise.resolve<MenuList>(null as any);
+    }
+
+    getDetails(id: number , cancelToken?: CancelToken | undefined): Promise<Menu> {
+        let url_ = this.baseUrl + "/api/Menu/{id}";
+        if (id === undefined || id === null)
+            throw new Error("The parameter 'id' must be defined.");
+        url_ = url_.replace("{id}", encodeURIComponent("" + id));
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_: AxiosRequestConfig = {
+            method: "GET",
+            url: url_,
+            headers: {
+                "Accept": "application/json"
+            },
+            cancelToken
+        };
+
+        return this.instance.request(options_).catch((_error: any) => {
+            if (isAxiosError(_error) && _error.response) {
+                return _error.response;
+            } else {
+                throw _error;
+            }
+        }).then((_response: AxiosResponse) => {
+            return this.processGetDetails(_response);
+        });
+    }
+
+    protected processGetDetails(response: AxiosResponse): Promise<Menu> {
+        const status = response.status;
+        let _headers: any = {};
+        if (response.headers && typeof response.headers === "object") {
+            for (let k in response.headers) {
+                if (response.headers.hasOwnProperty(k)) {
+                    _headers[k] = response.headers[k];
+                }
+            }
+        }
+        if (status === 200) {
+            const _responseText = response.data;
+            let result200: any = null;
+            let resultData200  = _responseText;
+            result200 = Menu.fromJS(resultData200);
+            return Promise.resolve<Menu>(result200);
+
+        } else if (status !== 200 && status !== 204) {
+            const _responseText = response.data;
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+        }
+        return Promise.resolve<Menu>(null as any);
     }
 }
 
@@ -175,6 +581,326 @@ export interface IConditional {
     busy_rule?: string | undefined;
     line_limit?: number;
     line_group?: string | undefined;
+}
+
+export class CustomerNumberList implements ICustomerNumberList {
+    customerNumber?: CustomerNumber[] | undefined;
+
+    constructor(data?: ICustomerNumberList) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            if (Array.isArray(_data["customerNumber"])) {
+                this.customerNumber = [] as any;
+                for (let item of _data["customerNumber"])
+                    this.customerNumber!.push(CustomerNumber.fromJS(item));
+            }
+        }
+    }
+
+    static fromJS(data: any): CustomerNumberList {
+        data = typeof data === 'object' ? data : {};
+        let result = new CustomerNumberList();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        if (Array.isArray(this.customerNumber)) {
+            data["customerNumber"] = [];
+            for (let item of this.customerNumber)
+                data["customerNumber"].push(item.toJSON());
+        }
+        return data;
+    }
+}
+
+export interface ICustomerNumberList {
+    customerNumber?: CustomerNumber[] | undefined;
+}
+
+export class CustomerNumber implements ICustomerNumber {
+    id?: number;
+    phone_number?: string | undefined;
+    conditional_name?: string | undefined;
+    sip_server?: string | undefined;
+    sip_server_backup?: string | undefined;
+    sms_enabled?: boolean;
+
+    constructor(data?: ICustomerNumber) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.phone_number = _data["phone_number"];
+            this.conditional_name = _data["conditional_name"];
+            this.sip_server = _data["sip_server"];
+            this.sip_server_backup = _data["sip_server_backup"];
+            this.sms_enabled = _data["sms_enabled"];
+        }
+    }
+
+    static fromJS(data: any): CustomerNumber {
+        data = typeof data === 'object' ? data : {};
+        let result = new CustomerNumber();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["phone_number"] = this.phone_number;
+        data["conditional_name"] = this.conditional_name;
+        data["sip_server"] = this.sip_server;
+        data["sip_server_backup"] = this.sip_server_backup;
+        data["sms_enabled"] = this.sms_enabled;
+        return data;
+    }
+}
+
+export interface ICustomerNumber {
+    id?: number;
+    phone_number?: string | undefined;
+    conditional_name?: string | undefined;
+    sip_server?: string | undefined;
+    sip_server_backup?: string | undefined;
+    sms_enabled?: boolean;
+}
+
+export class DepartmentList implements IDepartmentList {
+    department?: Department[] | undefined;
+
+    constructor(data?: IDepartmentList) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            if (Array.isArray(_data["department"])) {
+                this.department = [] as any;
+                for (let item of _data["department"])
+                    this.department!.push(Department.fromJS(item));
+            }
+        }
+    }
+
+    static fromJS(data: any): DepartmentList {
+        data = typeof data === 'object' ? data : {};
+        let result = new DepartmentList();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        if (Array.isArray(this.department)) {
+            data["department"] = [];
+            for (let item of this.department)
+                data["department"].push(item.toJSON());
+        }
+        return data;
+    }
+}
+
+export interface IDepartmentList {
+    department?: Department[] | undefined;
+}
+
+export class Department implements IDepartment {
+    id?: number;
+    name?: string | undefined;
+    ext?: string | undefined;
+    prefix?: string | undefined;
+    hours?: string | undefined;
+    vmbox?: string | undefined;
+    open_rules?: string | undefined;
+    closed_rules?: string | undefined;
+    down_rules?: string | undefined;
+    cust_greeting?: string | undefined;
+    cust_greet_afterhours?: string | undefined;
+
+    constructor(data?: IDepartment) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.name = _data["name"];
+            this.ext = _data["ext"];
+            this.prefix = _data["prefix"];
+            this.hours = _data["hours"];
+            this.vmbox = _data["vmbox"];
+            this.open_rules = _data["open_rules"];
+            this.closed_rules = _data["closed_rules"];
+            this.down_rules = _data["down_rules"];
+            this.cust_greeting = _data["cust_greeting"];
+            this.cust_greet_afterhours = _data["cust_greet_afterhours"];
+        }
+    }
+
+    static fromJS(data: any): Department {
+        data = typeof data === 'object' ? data : {};
+        let result = new Department();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["name"] = this.name;
+        data["ext"] = this.ext;
+        data["prefix"] = this.prefix;
+        data["hours"] = this.hours;
+        data["vmbox"] = this.vmbox;
+        data["open_rules"] = this.open_rules;
+        data["closed_rules"] = this.closed_rules;
+        data["down_rules"] = this.down_rules;
+        data["cust_greeting"] = this.cust_greeting;
+        data["cust_greet_afterhours"] = this.cust_greet_afterhours;
+        return data;
+    }
+}
+
+export interface IDepartment {
+    id?: number;
+    name?: string | undefined;
+    ext?: string | undefined;
+    prefix?: string | undefined;
+    hours?: string | undefined;
+    vmbox?: string | undefined;
+    open_rules?: string | undefined;
+    closed_rules?: string | undefined;
+    down_rules?: string | undefined;
+    cust_greeting?: string | undefined;
+    cust_greet_afterhours?: string | undefined;
+}
+
+export class MenuList implements IMenuList {
+    menu?: Menu[] | undefined;
+
+    constructor(data?: IMenuList) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            if (Array.isArray(_data["menu"])) {
+                this.menu = [] as any;
+                for (let item of _data["menu"])
+                    this.menu!.push(Menu.fromJS(item));
+            }
+        }
+    }
+
+    static fromJS(data: any): MenuList {
+        data = typeof data === 'object' ? data : {};
+        let result = new MenuList();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        if (Array.isArray(this.menu)) {
+            data["menu"] = [];
+            for (let item of this.menu)
+                data["menu"].push(item.toJSON());
+        }
+        return data;
+    }
+}
+
+export interface IMenuList {
+    menu?: Menu[] | undefined;
+}
+
+export class Menu implements IMenu {
+    id?: number;
+    name?: string | undefined;
+    menu?: string | undefined;
+    msg_file?: string | undefined;
+    menu_timeout?: number;
+    max_digits?: number;
+
+    constructor(data?: IMenu) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.name = _data["name"];
+            this.menu = _data["menu"];
+            this.msg_file = _data["msg_file"];
+            this.menu_timeout = _data["menu_timeout"];
+            this.max_digits = _data["max_digits"];
+        }
+    }
+
+    static fromJS(data: any): Menu {
+        data = typeof data === 'object' ? data : {};
+        let result = new Menu();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["name"] = this.name;
+        data["menu"] = this.menu;
+        data["msg_file"] = this.msg_file;
+        data["menu_timeout"] = this.menu_timeout;
+        data["max_digits"] = this.max_digits;
+        return data;
+    }
+}
+
+export interface IMenu {
+    id?: number;
+    name?: string | undefined;
+    menu?: string | undefined;
+    msg_file?: string | undefined;
+    menu_timeout?: number;
+    max_digits?: number;
 }
 
 export class SwaggerException extends Error {

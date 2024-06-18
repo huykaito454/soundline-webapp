@@ -65,6 +65,12 @@ import RingGroup from "./Actions/RingGroup";
 import { CustomControls } from "./Other/CustomControls";
 import { CustomReviewRules } from "./Other/CustomReviewRules";
 import { getDataFlow } from "../../utils/exportFinalData";
+import {
+  ConditionalClient,
+  CustomerNumberClient,
+  DepartmentClient,
+  MenuClient,
+} from "../../services/web-api-client";
 
 const nodeTypes = {
   phoneNumber: PhoneNumber,
@@ -111,7 +117,7 @@ const edgeTypes = {
   default: DefaultEdge,
 };
 const Flow = () => {
-  const { id } = useParams();
+  const { id }: any = useParams();
   const location = useLocation();
   const currentPath = location.pathname;
   const [edges, setEdges] = useState<any>([]);
@@ -128,32 +134,62 @@ const Flow = () => {
     "menu-source": "",
   });
   let timeoutId: any = null;
+
   useEffect(() => {
     if (ref.current) {
       let flow: any = [];
       if (currentPath.includes("/phone-number/")) {
-        let data = customerNumbers;
-        let dataFined = data.find((x: any) => x.id == id);
-        flow = returnPhoneNumberFlow(dataFined);
+        const client = new CustomerNumberClient();
+        client
+          .getDetails(id)
+          .then((data: any) => {
+            flow = returnPhoneNumberFlow(data);
+            setNodes(flow.nodes);
+            setEdges(flow.edges);
+          })
+          .catch((error) => {
+            console.log(error);
+          });
       }
       if (currentPath.includes("/conditional/")) {
-        let data = conditional;
-        let dataFined = data.find((x: any) => x.id == id);
-        flow = returnConditionFlow(dataFined);
+        const client = new ConditionalClient();
+        client
+          .getDetails(id)
+          .then((data: any) => {
+            flow = returnConditionFlow(data);
+            setNodes(flow.nodes);
+            setEdges(flow.edges);
+          })
+          .catch((error) => {
+            console.log(error);
+          });
       }
       if (currentPath.includes("/department/")) {
-        let data = department;
-        let dataFined = data.find((x: any) => x.id == id);
-        flow = returnDepartmentFlow(dataFined);
+        const client = new DepartmentClient();
+        client
+          .getDetails(id)
+          .then((data: any) => {
+            flow = returnDepartmentFlow(data);
+            setNodes(flow.nodes);
+            setEdges(flow.edges);
+          })
+          .catch((error) => {
+            console.log(error);
+          });
       }
       if (currentPath.includes("/menu/")) {
-        let data = menu;
-        let dataFined = data.find((x: any) => x.id == id);
-        flow = returnMenuFlow(dataFined);
+        const client = new MenuClient();
+        client
+          .getDetails(id)
+          .then((data: any) => {
+            flow = returnMenuFlow(data);
+            setNodes(flow.nodes);
+            setEdges(flow.edges);
+          })
+          .catch((error) => {
+            console.log(error);
+          });
       }
-      setNodes(flow.nodes);
-      setEdges(flow.edges);
-      getDataFlow(nodes, edges, currentPath);
     }
   }, []);
   useEffect(() => {

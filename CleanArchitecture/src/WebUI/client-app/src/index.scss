@@ -161,3 +161,15 @@ input[type="number"] {
   outline: 0 !important;
   box-shadow: none !important;
 }
+.ant-table-title {
+  background-color: #fafafa !important;
+  color: #8cc63f !important;
+  font-size: 15px;
+}
+.ant-table-thead {
+  tr {
+    th {
+      background-color: white !important;
+    }
+  }
+}

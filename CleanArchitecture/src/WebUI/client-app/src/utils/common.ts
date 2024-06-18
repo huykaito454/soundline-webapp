@@ -53,11 +53,11 @@ export const returnPhoneNumberFlow = (data: any) => {
     type: "phoneNumber",
     position: { x: 120, y: yPosition },
     data: {
-      phoneNumber: data.phoneNumber,
+      phoneNumber: data.phone_number,
     },
   });
   try {
-    let commands = data.conditionalName.split("|");
+    let commands = data.conditional_name.split("|");
     commands = commands.filter((item: any) => item !== "");
     commands.forEach((command: any) => {
       if (isAlphanumeric(command)) {
@@ -97,9 +97,9 @@ export const returnMenuFlow = (data: any) => {
     position: { x: 120, y: 40 },
     data: {
       name: data.name,
-      timeout: data.menuTimeout,
-      maxDigits: data.maxDigits,
-      msgFile: data.msgFile,
+      timeout: data.menu_timeout,
+      maxDigits: data.max_digits,
+      msgFile: data.msg_file,
     },
   });
   try {
@@ -141,8 +141,8 @@ export const returnConditionFlow = (data: any) => {
     position: { x: xPosition, y: yPositionOpen },
     data: {
       name: data.name,
-      lineLimit: data.lineLimit,
-      lineGroup: data.lineGroup,
+      lineLimit: data.line_limit,
+      lineGroup: data.line_group,
     },
   });
   try {
@@ -174,7 +174,7 @@ export const returnConditionFlow = (data: any) => {
     });
 
     //Handle Busy Rule
-    let busyRules = data.busyRules.split("|");
+    let busyRules = data.busy_rule.split("|");
     let firstBusyNode = false;
     busyRules = busyRules.filter((item: any) => item !== "");
     busyRules.forEach((command: any) => {
@@ -223,13 +223,13 @@ export const returnDepartmentFlow = (data: any) => {
       name: data.name,
       hours: data.hours,
       vmBox: data.vmbox,
-      greeting: data.custGreeting,
-      greetingAfterHours: data.custGreetAfterHours,
+      greeting: data.cust_greeting,
+      greetingAfterHours: data.cust_greet_afterhours,
     },
   });
   try {
     //Handle Rule
-    let rules = data.openRules.split("|");
+    let rules = data.open_rules.split("|");
     rules = rules.filter((item: any) => item !== "");
     rules.forEach((command: any) => {
       let newNode = addNewNode(command, nodes, "department");
@@ -248,7 +248,7 @@ export const returnDepartmentFlow = (data: any) => {
     });
 
     //Handle Close Rule
-    let closedRules = data.closedRules.split("|");
+    let closedRules = data.closed_rules.split("|");
     let firstClosedNode = false;
     closedRules = closedRules.filter((item: any) => item !== "");
     closedRules.forEach((command: any) => {
@@ -276,7 +276,7 @@ export const returnDepartmentFlow = (data: any) => {
 
     //Handle Down Rule
 
-    let downRules = data.downRules.split("|");
+    let downRules = data.down_rules.split("|");
     let firstDownNode = false;
     downRules = downRules.filter((item: any) => item !== "");
     downRules.forEach((command: any) => {
