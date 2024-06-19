@@ -35,7 +35,7 @@ const MenuTable = () => {
     {
       title: "Action",
       key: "action",
-      render: (e: any, record: any) => (
+      render: (_: any, record: any) => (
         <p
           className=" text-[#1677FF] cursor-pointer"
           onClick={() => {

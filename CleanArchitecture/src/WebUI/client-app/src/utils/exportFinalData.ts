@@ -90,10 +90,10 @@ const getCommand = (edges: any, nodes: any, type = "phone-number") => {
           finalData = finalData + getAnswer(node.data, edge, type);
         }
         if (node.type == "busy") {
-          finalData = finalData + getBusy(node.data, edge, type);
+          finalData = finalData + getBusy(edge, type);
         }
         if (node.type == "callback") {
-          finalData = finalData + getCallBack(node.data, edge, type);
+          finalData = finalData + getCallBack(edge, type);
         }
         if (node.type == "databaseForward") {
           finalData = finalData + getDatabaseForward(node.data, edge, type);
@@ -126,14 +126,13 @@ const getCommand = (edges: any, nodes: any, type = "phone-number") => {
           finalData = finalData + getPlayback(node.data, edge, type);
         }
         if (node.type == "privacy") {
-          finalData = finalData + getPrivacy(node.data, edge, type);
+          finalData = finalData + getPrivacy(edge, type);
         }
         if (node.type == "repeatMenu") {
-          finalData = finalData + getRepeatMenu(node.data, edge, type);
+          finalData = finalData + getRepeatMenu(edge, type);
         }
         if (node.type == "returnToPreviousMenu") {
-          finalData =
-            finalData + getReturnToPreviousMenu(node.data, edge, type);
+          finalData = finalData + getReturnToPreviousMenu(edge, type);
         }
         if (node.type == "ringGroup") {
           finalData = finalData + getRingGroup(node.data, edge, type);
@@ -151,7 +150,7 @@ const getCommand = (edges: any, nodes: any, type = "phone-number") => {
           finalData = finalData + getWait(node.data, edge, type);
         }
         if (node.type == "zap") {
-          finalData = finalData + getZap(node.data, edge, type);
+          finalData = finalData + getZap(edge, type);
         }
       }
     });
@@ -331,7 +330,7 @@ const getAnswer = (data: any, edge: any, type: any) => {
     return command;
   }
 };
-const getBusy = (data: any, edge: any, type: any) => {
+const getBusy = (edge: any, type: any) => {
   let command = "b";
   try {
     command = returnCommandFormat(command, edge, type);
@@ -340,7 +339,7 @@ const getBusy = (data: any, edge: any, type: any) => {
     return command;
   }
 };
-const getCallBack = (data: any, edge: any, type: any) => {
+const getCallBack = (edge: any, type: any) => {
   let command = "rb";
   try {
     command = returnCommandFormat(command, edge, type);
@@ -490,7 +489,7 @@ const getPlayback = (data: any, edge: any, type: any) => {
     return command;
   }
 };
-const getPrivacy = (data: any, edge: any, type: any) => {
+const getPrivacy = (edge: any, type: any) => {
   let command = "privacy";
   try {
     command = returnCommandFormat(command, edge, type);
@@ -499,7 +498,7 @@ const getPrivacy = (data: any, edge: any, type: any) => {
     return command;
   }
 };
-const getRepeatMenu = (data: any, edge: any, type: any) => {
+const getRepeatMenu = (edge: any, type: any) => {
   let command = "rm";
   try {
     command = returnCommandFormat(command, edge, type);
@@ -508,7 +507,7 @@ const getRepeatMenu = (data: any, edge: any, type: any) => {
     return command;
   }
 };
-const getReturnToPreviousMenu = (data: any, edge: any, type: any) => {
+const getReturnToPreviousMenu = (edge: any, type: any) => {
   let command = "r";
   try {
     command = returnCommandFormat(command, edge, type);
@@ -598,7 +597,7 @@ const getWait = (data: any, edge: any, type: any) => {
     return command;
   }
 };
-const getZap = (data: any, edge: any, type: any) => {
+const getZap = (edge: any, type: any) => {
   let command = "zap";
   try {
     command = returnCommandFormat(command, edge, type);

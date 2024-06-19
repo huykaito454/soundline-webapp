@@ -13,7 +13,7 @@ const GoToDepartment = (props: any) => {
   const [form] = Form.useForm();
   const [department, setDepartment] = useState<any>([]);
   const { setNodes, setEdges } = useReactFlow();
-  const onChange = (evt: any) => {
+  const onChange = () => {
     const allFields = form.getFieldsValue();
     onChangeNode(setNodes, props, allFields);
   };

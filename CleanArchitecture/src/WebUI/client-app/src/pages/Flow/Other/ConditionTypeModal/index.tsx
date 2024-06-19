@@ -5,7 +5,7 @@ import { useState } from "react";
 const ConditionTypeModal = (props: any) => {
   const [data, setData] = useState<any>(props.data);
   const conditions = conditionsData;
-  const onChange = (evt: any) => {
+  const onChange = () => {
     const allFields = props.form.getFieldsValue();
     setData(allFields);
   };

@@ -4,7 +4,7 @@ import { onChangeNode } from "../../../../utils/common";
 const Department = (props: any) => {
   const [form] = Form.useForm();
   const { setNodes } = useReactFlow();
-  const onChange = (evt: any) => {
+  const onChange = () => {
     const allFields = form.getFieldsValue();
     onChangeNode(setNodes, props, allFields);
   };

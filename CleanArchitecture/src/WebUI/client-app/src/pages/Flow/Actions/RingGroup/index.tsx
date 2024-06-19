@@ -1,5 +1,5 @@
 import { CopyOutlined, DeleteOutlined, PlusOutlined } from "@ant-design/icons";
-import { Button, Form, Input, Radio, Space } from "antd";
+import { Button, Form, Input, Radio } from "antd";
 import { Handle, NodeToolbar, Position, useReactFlow } from "reactflow";
 import {
   deleteNode,
@@ -10,7 +10,7 @@ const RingGroup = (props: any) => {
   const currentPath = location.pathname;
   const [form] = Form.useForm();
   const { setNodes, setEdges } = useReactFlow();
-  const onChange = (evt: any) => {
+  const onChange = () => {
     const allFields = form.getFieldsValue();
     onChangeNode(setNodes, props, allFields);
   };

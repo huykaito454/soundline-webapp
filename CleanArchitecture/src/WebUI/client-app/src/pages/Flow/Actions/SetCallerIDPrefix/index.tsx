@@ -10,7 +10,7 @@ const SetCallerIDPrefix = (props: any) => {
   const currentPath = location.pathname;
   const [form] = Form.useForm();
   const { setNodes, setEdges } = useReactFlow();
-  const onChange = (evt: any) => {
+  const onChange = () => {
     const allFields = form.getFieldsValue();
     onChangeNode(setNodes, props, allFields);
   };

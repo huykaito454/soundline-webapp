@@ -34,7 +34,6 @@ import {
   returnMenuFlow,
   returnPhoneNumberFlow,
 } from "../../utils/common";
-import { conditional, customerNumbers, department, menu } from "../../mockData";
 import DefaultEdge from "./Other/DefaultEdge";
 import SetCallerIDNumber from "./Actions/SetCallerIDNumber";
 import SetCallerIDPostfix from "./Actions/SetCallerIDPostfix";

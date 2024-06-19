@@ -5,8 +5,6 @@ import {
   BaseEdge,
   EdgeLabelRenderer,
   EdgeProps,
-  MarkerType,
-  getMarkerEnd,
   getSmoothStepPath,
   useReactFlow,
 } from "reactflow";

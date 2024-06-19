@@ -14,7 +14,7 @@ const GoToConditional = (props: any) => {
   const [form] = Form.useForm();
   const [conditional, setConditional] = useState<any>([]);
   const { setNodes, setEdges } = useReactFlow();
-  const onChange = (evt: any) => {
+  const onChange = () => {
     const allFields = form.getFieldsValue();
     onChangeNode(setNodes, props, allFields);
   };

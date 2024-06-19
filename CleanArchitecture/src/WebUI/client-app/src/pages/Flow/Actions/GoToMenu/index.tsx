@@ -1,5 +1,5 @@
 import { CopyOutlined, DeleteOutlined, EditOutlined } from "@ant-design/icons";
-import { AutoComplete, Button, Form, Input } from "antd";
+import { AutoComplete, Button, Form } from "antd";
 import { Handle, NodeToolbar, Position, useReactFlow } from "reactflow";
 import {
   deleteNode,
@@ -14,7 +14,7 @@ const GoToMenu = (props: any) => {
   const [menu, setMenu] = useState<any>([]);
 
   const { setNodes, setEdges } = useReactFlow();
-  const onChange = (evt: any) => {
+  const onChange = () => {
     const allFields = form.getFieldsValue();
     onChangeNode(setNodes, props, allFields);
   };

@@ -2,7 +2,7 @@ import { Button } from "antd";
 import { StarOutlined } from "@ant-design/icons";
 import myImage from "../../assets/images/logo.png";
 
-const Header = ({ nodes, edges, publish = false }: any) => {
+const Header = ({ publish = false }: any) => {
   const handleClick = () => {};
 
   return (
