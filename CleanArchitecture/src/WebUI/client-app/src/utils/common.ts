@@ -89,7 +89,7 @@ export const returnPhoneNumberFlow = (data: any) => {
 export const returnMenuFlow = (data: any) => {
   let nodes: any = [];
   let edges: any = [];
-  let xPosition = -330;
+  let xPosition = -390;
   let yPosition = 500;
   nodes.push({
     id: "0",
@@ -109,7 +109,7 @@ export const returnMenuFlow = (data: any) => {
     rules.forEach((command: any) => {
       let newNode = addNewNode(command, nodes);
       if (newNode != null) {
-        xPosition = xPosition + 350;
+        xPosition = xPosition + 450;
         newNode.node.position.y = yPosition;
         newNode.node.position.x = xPosition;
         nodes.push(newNode.node);
@@ -153,12 +153,12 @@ export const returnConditionFlow = (data: any) => {
       let newNode = addNewNode(command, nodes);
       if (newNode != null) {
         if (yPositionOpen > 250) {
-          yPositionOpen = yPositionOpen + 250;
+          yPositionOpen = yPositionOpen + 400;
         } else {
-          yPositionOpen = yPositionOpen + 370;
+          yPositionOpen = yPositionOpen + 380;
         }
         newNode.node.position.y = yPositionOpen;
-        newNode.node.position.x = xPosition + 300;
+        newNode.node.position.x = xPosition + 400;
         nodes.push(newNode.node);
 
         edges.push(
@@ -181,9 +181,9 @@ export const returnConditionFlow = (data: any) => {
       let newNode = addNewNode(command, nodes);
       if (newNode != null) {
         if (yPositionBusy > 250) {
-          yPositionBusy = yPositionBusy + 250;
+          yPositionBusy = yPositionBusy + 400;
         } else {
-          yPositionBusy = yPositionBusy + 370;
+          yPositionBusy = yPositionBusy + 380;
         }
         newNode.node.position.y = yPositionBusy;
         newNode.node.position.x = xPosition - 100;
@@ -236,12 +236,12 @@ export const returnDepartmentFlow = (data: any) => {
 
       if (newNode != null) {
         if (yPositionOpen > 250) {
-          yPositionOpen = yPositionOpen + 250;
+          yPositionOpen = yPositionOpen + 400;
         } else {
           yPositionOpen = yPositionOpen + 600;
         }
         newNode.node.position.y = yPositionOpen;
-        newNode.node.position.x = xPosition + 700;
+        newNode.node.position.x = xPosition + 900;
         nodes.push(newNode.node);
         edges.push(addConnection(nodes.length - 2, nodes.length - 1, "source"));
       }
@@ -255,12 +255,12 @@ export const returnDepartmentFlow = (data: any) => {
       let newNode = addNewNode(command, nodes, "department");
       if (newNode != null) {
         if (yPositionClose > 250) {
-          yPositionClose = yPositionClose + 250;
+          yPositionClose = yPositionClose + 400;
         } else {
           yPositionClose = yPositionClose + 600;
         }
         newNode.node.position.y = yPositionClose;
-        newNode.node.position.x = xPosition + 300;
+        newNode.node.position.x = xPosition + 400;
         nodes.push(newNode.node);
         edges.push(
           addConnection(
@@ -283,7 +283,7 @@ export const returnDepartmentFlow = (data: any) => {
       let newNode = addNewNode(command, nodes, "department");
       if (newNode != null) {
         if (yPositionDown > 250) {
-          yPositionDown = yPositionDown + 250;
+          yPositionDown = yPositionDown + 400;
         } else {
           yPositionDown = yPositionDown + 600;
         }
