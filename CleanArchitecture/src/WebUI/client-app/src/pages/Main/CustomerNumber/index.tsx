@@ -21,7 +21,7 @@ const CustomerNumber = () => {
       title: "SMS",
       dataIndex: "sms_enabled",
       key: "sms_enabled",
-      render: (e: any, record: any) => (
+      render: (_: any, record: any) => (
         <>{record.sms_enabled == true ? "True" : "False"}</>
       ),
     },
