@@ -1,21 +1,19 @@
 import { CopyOutlined, DeleteOutlined, EditOutlined } from "@ant-design/icons";
-import { AutoComplete, Button, Form, Input } from "antd";
+import { AutoComplete, Button, Form } from "antd";
 import { Handle, NodeToolbar, Position, useReactFlow } from "reactflow";
 import {
   deleteNode,
   duplicateNode,
   onChangeNode,
 } from "../../../../utils/common";
-import { conditional } from "../../../../mockData";
+import { ConditionalClient } from "../../../../services/web-api-client";
+import { useEffect, useState } from "react";
 
 const GoToConditional = (props: any) => {
   const currentPath = location.pathname;
   const [form] = Form.useForm();
+  const [conditional, setConditional] = useState<any>([]);
   const { setNodes, setEdges } = useReactFlow();
-  const options = conditional.map((item) => ({
-    ...conditional,
-    value: item.name?.toString(),
-  }));
   const onChange = (evt: any) => {
     const allFields = form.getFieldsValue();
     onChangeNode(setNodes, props, allFields);
@@ -31,6 +29,24 @@ const GoToConditional = (props: any) => {
     let dataFined = data.find((x: any) => x.name == props.data.name);
     window.open("/conditional/" + dataFined?.id);
   };
+  const getConditional = () => {
+    const client = new ConditionalClient();
+    client
+      .getAll()
+      .then((data: any) => {
+        const options = data.conditional.map((item: any) => ({
+          ...item,
+          value: item.name,
+        }));
+        setConditional(options);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+  useEffect(() => {
+    getConditional();
+  }, []);
   return (
     <div className="soundline-node">
       <div className="soundline-node-name">
@@ -82,7 +98,7 @@ const GoToConditional = (props: any) => {
             <Form.Item name="name" className="flex-1">
               <AutoComplete
                 className="nodrag"
-                options={options}
+                options={conditional}
                 placeholder="Name"
                 filterOption={(inputValue: any, option: any) =>
                   option!.value

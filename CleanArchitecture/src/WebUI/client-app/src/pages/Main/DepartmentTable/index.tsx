@@ -8,14 +8,14 @@ const DepartmentTable = () => {
 
   const columns = [
     {
-      title: "Name",
-      dataIndex: "name",
-      key: "name",
-    },
-    {
       title: "Ext",
       dataIndex: "ext",
       key: "ext",
+    },
+    {
+      title: "Name",
+      dataIndex: "name",
+      key: "name",
     },
     {
       title: "Prefix",
@@ -28,9 +28,14 @@ const DepartmentTable = () => {
       key: "hours",
     },
     {
-      title: "VMbox",
-      dataIndex: "vmbox",
-      key: "vmbox",
+      title: "Greeting",
+      dataIndex: "cust_greeting",
+      key: "cust_greeting",
+    },
+    {
+      title: "Greeting After Hours",
+      dataIndex: "cust_greet_afterhours",
+      key: "cust_greeting_afterhours",
     },
     {
       title: "Open Rules",
@@ -43,19 +48,14 @@ const DepartmentTable = () => {
       key: "closed_rules",
     },
     {
+      title: "VMbox",
+      dataIndex: "vmbox",
+      key: "vmbox",
+    },
+    {
       title: "Down Rules",
       dataIndex: "down_rules",
       key: "down_rules",
-    },
-    {
-      title: "Greeting",
-      dataIndex: "cust_greeting",
-      key: "cust_greeting",
-    },
-    {
-      title: "Greeting After Hours",
-      dataIndex: "cust_greet_afterhours",
-      key: "cust_greeting_afterhours",
     },
     {
       title: "Action",
@@ -80,7 +80,6 @@ const DepartmentTable = () => {
     client
       .getAll()
       .then((data: any) => {
-        console.log(data);
         setDepartment(data.department);
       })
       .catch((error) => {
@@ -95,9 +94,9 @@ const DepartmentTable = () => {
       rowKey="id"
       columns={columns}
       dataSource={department}
-      title={() => <p className="font-semibold uppercase py-1">Department</p>}
+      title={() => <p className="font-semibold uppercase py-1">Departments</p>}
       size="small"
-      pagination={{ pageSize: 10 }}
+      pagination={{ pageSize: 10, showTotal: (total) => `Total: ${total}` }}
     />
   );
 };

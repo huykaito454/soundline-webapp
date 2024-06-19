@@ -6,14 +6,13 @@ import {
   duplicateNode,
   onChangeNode,
 } from "../../../../utils/common";
-import { menu } from "../../../../mockData";
+import { useEffect, useState } from "react";
+import { MenuClient } from "../../../../services/web-api-client";
 const GoToMenu = (props: any) => {
   const currentPath = location.pathname;
   const [form] = Form.useForm();
-  const options = menu.map((item) => ({
-    ...menu,
-    value: item.name?.toString(),
-  }));
+  const [menu, setMenu] = useState<any>([]);
+
   const { setNodes, setEdges } = useReactFlow();
   const onChange = (evt: any) => {
     const allFields = form.getFieldsValue();
@@ -30,6 +29,24 @@ const GoToMenu = (props: any) => {
     let dataFined = data.find((x: any) => x.name == props.data.name);
     window.open("/menu/" + dataFined?.id);
   };
+  const getMenu = () => {
+    const client = new MenuClient();
+    client
+      .getAll()
+      .then((data: any) => {
+        const options = data.menu.map((item: any) => ({
+          ...item,
+          value: item.name,
+        }));
+        setMenu(options);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+  useEffect(() => {
+    getMenu();
+  }, []);
   return (
     <div className="soundline-node">
       <div className="soundline-node-name">
@@ -80,7 +97,7 @@ const GoToMenu = (props: any) => {
             <Form.Item name="name" className="flex-1">
               <AutoComplete
                 className="nodrag"
-                options={options}
+                options={menu}
                 placeholder="Name"
                 filterOption={(inputValue: any, option: any) =>
                   option!.value

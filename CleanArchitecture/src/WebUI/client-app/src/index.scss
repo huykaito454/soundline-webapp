@@ -163,7 +163,7 @@ input[type="number"] {
 }
 .ant-table-title {
   background-color: #fafafa !important;
-  color: #8cc63f !important;
+  color: #1677ff !important;
   font-size: 15px;
 }
 .ant-table-thead {
@@ -172,4 +172,10 @@ input[type="number"] {
       background-color: white !important;
     }
   }
+}
+.ant-pagination-total-text {
+  flex: 1 !important;
+  padding-left: 0.5rem !important;
+  color: #1677ff !important;
+  font-weight: 500;
 }

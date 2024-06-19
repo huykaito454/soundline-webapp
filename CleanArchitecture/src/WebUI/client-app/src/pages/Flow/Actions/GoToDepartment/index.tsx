@@ -1,19 +1,17 @@
 import { CopyOutlined, DeleteOutlined, EditOutlined } from "@ant-design/icons";
-import { AutoComplete, Button, Form, Input } from "antd";
+import { AutoComplete, Button, Form } from "antd";
 import { Handle, NodeToolbar, Position, useReactFlow } from "reactflow";
 import {
   deleteNode,
   duplicateNode,
   onChangeNode,
 } from "../../../../utils/common";
-import { department } from "../../../../mockData";
+import { useEffect, useState } from "react";
+import { DepartmentClient } from "../../../../services/web-api-client";
 const GoToDepartment = (props: any) => {
   const currentPath = location.pathname;
   const [form] = Form.useForm();
-  const options = department.map((item) => ({
-    ...department,
-    value: item.name?.toString(),
-  }));
+  const [department, setDepartment] = useState<any>([]);
   const { setNodes, setEdges } = useReactFlow();
   const onChange = (evt: any) => {
     const allFields = form.getFieldsValue();
@@ -30,6 +28,24 @@ const GoToDepartment = (props: any) => {
     let dataFined = data.find((x: any) => x.name == props.data.name);
     window.open("/department/" + dataFined?.id);
   };
+  const getDepartment = () => {
+    const client = new DepartmentClient();
+    client
+      .getAll()
+      .then((data: any) => {
+        const options = data.department.map((item: any) => ({
+          ...item,
+          value: item.name,
+        }));
+        setDepartment(options);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+  useEffect(() => {
+    getDepartment();
+  }, []);
   return (
     <div className="soundline-node">
       <div className="soundline-node-name">
@@ -69,7 +85,7 @@ const GoToDepartment = (props: any) => {
             <Form.Item name="name" className="flex-1">
               <AutoComplete
                 className="nodrag"
-                options={options}
+                options={department}
                 placeholder="Name"
                 filterOption={(inputValue: any, option: any) =>
                   option!.value

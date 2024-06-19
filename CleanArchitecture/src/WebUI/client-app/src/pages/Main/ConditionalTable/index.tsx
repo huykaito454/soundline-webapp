@@ -71,7 +71,7 @@ const ConditionalTable = () => {
       dataSource={conditional}
       title={() => <p className="font-semibold uppercase py-1">Conditionals</p>}
       size="small"
-      pagination={{ pageSize: 10 }}
+      pagination={{ pageSize: 10, showTotal: (total) => `Total: ${total}` }}
     />
   );
 };

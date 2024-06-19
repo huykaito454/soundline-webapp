@@ -72,9 +72,14 @@ const CustomerNumber = () => {
       rowKey="id"
       columns={columns}
       dataSource={number}
-      title={() => <p className="font-semibold uppercase py-1">Phone Number</p>}
+      title={() => (
+        <p className="font-semibold uppercase py-1">Phone Numbers (DIDs)</p>
+      )}
       size="small"
-      pagination={{ pageSize: 10 }}
+      pagination={{
+        pageSize: 10,
+        showTotal: (total) => `Total: ${total}`,
+      }}
     />
   );
 };

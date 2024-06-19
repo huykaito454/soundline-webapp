@@ -7,14 +7,14 @@ import {
   onChangeNode,
 } from "../../../../utils/common";
 import { customerNumbers } from "../../../../mockData";
+import { useEffect, useState } from "react";
+import { CustomerNumberClient } from "../../../../services/web-api-client";
 const Link = (props: any) => {
   const currentPath = location.pathname;
   const [form] = Form.useForm();
   const { setNodes, setEdges } = useReactFlow();
-  const options = customerNumbers.map((number) => ({
-    ...customerNumbers,
-    value: number.phoneNumber?.toString(),
-  }));
+  const [number, setNumber] = useState<any>([]);
+
   const onChange = (evt: any) => {
     const allFields = form.getFieldsValue();
     onChangeNode(setNodes, props, allFields);
@@ -32,6 +32,24 @@ const Link = (props: any) => {
     );
     window.open("/phone-number/" + dataFined?.id);
   };
+  const getNumber = () => {
+    const client = new CustomerNumberClient();
+    client
+      .getAll()
+      .then((data: any) => {
+        const options = data.customerNumber.map((item: any) => ({
+          ...item,
+          value: item.phone_number,
+        }));
+        setNumber(options);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+  useEffect(() => {
+    getNumber();
+  }, []);
   return (
     <div className="soundline-node">
       <div className="soundline-node-name">
@@ -77,7 +95,7 @@ const Link = (props: any) => {
             <Form.Item name="phoneNumber" className="flex-1">
               <AutoComplete
                 className="nodrag"
-                options={options}
+                options={number}
                 placeholder="Phone Number"
                 filterOption={(inputValue: any, option: any) =>
                   option!.value

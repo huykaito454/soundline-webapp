@@ -69,9 +69,9 @@ const MenuTable = () => {
       rowKey="id"
       columns={columns}
       dataSource={menu}
-      title={() => <p className="font-semibold uppercase py-1">Menu</p>}
+      title={() => <p className="font-semibold uppercase py-1">Menus</p>}
       size="small"
-      pagination={{ pageSize: 10 }}
+      pagination={{ pageSize: 10, showTotal: (total) => `Total: ${total}` }}
     />
   );
 };
